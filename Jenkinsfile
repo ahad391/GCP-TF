@@ -11,7 +11,7 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'devopsabdul', fileVariable: 'GOOGLE_CREDENTIALS')]) {
                     sh 'gcloud auth activate-service-account --key-file=$GOOGLE_CREDENTIALS'
-                    sh 'terraform plan -var "credentials=${GOOGLE_CREDENTIALS}"'
+                    sh 'sudo terraform plan -var "credentials=${GOOGLE_CREDENTIALS}"'
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'devopsabdul', fileVariable: 'GOOGLE_CREDENTIALS')]) {
                     sh 'gcloud auth activate-service-account --key-file=$GOOGLE_CREDENTIALS'
-                    sh 'terraform apply -auto-approve -var "credentials=${GOOGLE_CREDENTIALS}"'
+                    sh 'sudo terraform apply -auto-approve -var "credentials=${GOOGLE_CREDENTIALS}"'
                 }
             }
         }
